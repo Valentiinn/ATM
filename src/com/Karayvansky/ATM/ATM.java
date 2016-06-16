@@ -28,7 +28,7 @@ public class ATM {
 		int pinCode = 0;
 		int counter = 3;
 		System.out.println("You enter the pin code: " + counter);
-		while (security.checkPinCode(pinCode)) {
+		while (!security.checkPinCode(pinCode)) {
 			pinCode = sc.nextInt();
 			counter--;
 			System.out.println("Attempts remaining " + counter);

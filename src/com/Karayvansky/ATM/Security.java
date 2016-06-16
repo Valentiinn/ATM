@@ -1,7 +1,8 @@
 package com.Karayvansky.ATM;
 
 public class Security {
-	BaseOfBankCards card = new BaseOfBankCards();
+	CardFactory cardFactory = new CardFactory();
+	
 
 //	public boolean identification(int secretCode) {
 //		CardFactory cardFactory = new CardFactory();
@@ -12,6 +13,7 @@ public class Security {
 //	}
 
 	public boolean checkPinCode(int pineCode) {
+		BaseOfBankCards card = cardFactory.identifyCard(4566);
 		if (pineCode == card.getPinCode())
 			return true;
 		return false;
