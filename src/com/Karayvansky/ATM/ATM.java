@@ -8,18 +8,18 @@ public class ATM {
 	private Security security = new Security();
 	Money money = new Money();
 
-	public void start() {
+	public void start() throws ExceptionWrongInsertCard {
 		if (user.insertCard())
 			System.out.println("Welcome to Odessa Bank!");
 		else
-			System.out.println("ERROR!");
+			throw new ExceptionWrongInsertCard("You incorrectly inserted the card");
 	}
 
-	public void enterPinCode() {
+	public void enterPinCode() throws ExceptionCardNotSuitable {
 		if (security.checkPinCode(inputPinCode())) {
 			System.out.println("Pin code correct");
 		} else {
-			System.out.println("Your card not suitable");
+			throw new ExceptionCardNotSuitable("You card not suitable");
 		}
 	}
 
@@ -58,21 +58,49 @@ public class ATM {
 		// case 4:
 		// System.out.println("On your card " + card.getBalance() + " dollars");
 		// break;
-		// case 5:
-		// System.out.println("On your card " + card.getBalance() + " dollars");
-		// break;
+		case 5:
+			printWithdrawMoney();
+			toWithdrawMoney();
+
+			break;
 		default:
 			break;
 		}
 	}
 
 	public void printWithdrawMoney() {
-		System.out.println("Do you want remove:" + "\n1" + money.FIFTEEN + "\n2" + money.HUNDRED + "\3"
-				+ money.THREE_HUNDRED + "\4" + money.FIVE_HUNDRED + "\5" + money.EIGHT_HUNDRED + "\6" + money.THOUSAND
-				+ "\7 Other amount multiple 50");
+		System.out.println("Do you want remove:" + "\n1. " + money.FIFTEEN + "\n2. " + money.HUNDRED + "\n3. "
+				+ money.THREE_HUNDRED + "\n4. " + money.FIVE_HUNDRED + "\n5. " + money.EIGHT_HUNDRED + "\n6. "
+				+ money.THOUSAND + "\n7. Other sum amount multiple 50");
 	}
 
-	public void toWithdrawMoney() {
-
+	public int toWithdrawMoney() {
+		switch (user.functionChoose()) {
+		case 1:
+			security.getCard().setBalance(money.FIFTEEN - security.getCard().getBalance());
+			System.out.println(security.getCard().getBalance());
+			return (int) security.getCard().getBalance();
+		case 2:
+			//
+			break;
+		case 3:
+			//
+			break;
+		case 4:
+			//
+			break;
+		case 5:
+			//
+			break;
+		case 6:
+			//
+			break;
+		case 7:
+			//
+			break;
+		default:
+			break;
+		}
+		return 0;
 	}
 }
