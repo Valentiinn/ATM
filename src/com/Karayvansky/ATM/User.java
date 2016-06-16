@@ -1,13 +1,23 @@
 package com.Karayvansky.ATM;
 
-public class User {
+import java.util.Scanner;
 
-	private BaseOfBankCards card;
+public class User {
 
 	public boolean insertCard() {
 		return true;
 	}
-	
-	
+
+	public int inputPinCode() {
+		Scanner sc = new Scanner(System.in);
+		int pinCode = sc.nextInt();
+		return pinCode;
+	}
+
+	public int functionChoose() {
+		Scanner sc = new Scanner(System.in);
+		int choose = sc.nextInt();
+		return choose;
+	}
 
 }

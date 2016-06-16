@@ -6,7 +6,7 @@ public class ATM {
 
 	private User user = new User();
 	private Security security = new Security();
-	BaseOfBankCards card = new BaseOfBankCards();
+	Money money = new Money();
 
 	public void start() {
 		if (user.insertCard())
@@ -15,7 +15,7 @@ public class ATM {
 			System.out.println("ERROR!");
 	}
 
-	public void enterPinCode(int secret) {
+	public void enterPinCode() {
 		if (security.checkPinCode(inputPinCode())) {
 			System.out.println("Pin code correct");
 		} else {
@@ -24,14 +24,12 @@ public class ATM {
 	}
 
 	public int inputPinCode() {
-		Scanner sc = new Scanner(System.in);
 		int pinCode = 0;
 		int counter = 3;
-		System.out.println("You enter the pin code: " + counter);
 		while (!security.checkPinCode(pinCode)) {
-			pinCode = sc.nextInt();
+			System.out.println("You enter the pin code: " + counter + " attempts");
+			pinCode = user.inputPinCode();
 			counter--;
-			System.out.println("Attempts remaining " + counter);
 			if (counter == 0) {
 				break;
 			}
@@ -39,4 +37,42 @@ public class ATM {
 		return pinCode;
 	}
 
+	public void selectFunctionFromMenu() {
+		System.out.println("What you want to do?\n1.Show balance on a screen\n2.Print balance on a bill"
+				+ "\n3.Money transfer to another account" + "\n4.To replenish  mobile account"
+				+ "\n5.To withdraw money");
+	}
+
+	public void chooseOperation() {
+
+		switch (user.functionChoose()) {
+		case 1:
+			System.out.println("On your card " + security.getCard().getBalance() + " dollars");
+			break;
+		// case 2:
+		// System.out.println("On your card " + card.getBalance() + " dollars");
+		// break;
+		// case 3:
+		// System.out.println("On your card " + card.getBalance() + " dollars");
+		// break;
+		// case 4:
+		// System.out.println("On your card " + card.getBalance() + " dollars");
+		// break;
+		// case 5:
+		// System.out.println("On your card " + card.getBalance() + " dollars");
+		// break;
+		default:
+			break;
+		}
+	}
+
+	public void printWithdrawMoney() {
+		System.out.println("Do you want remove:" + "\n1" + money.FIFTEEN + "\n2" + money.HUNDRED + "\3"
+				+ money.THREE_HUNDRED + "\4" + money.FIVE_HUNDRED + "\5" + money.EIGHT_HUNDRED + "\6" + money.THOUSAND
+				+ "\7 Other amount multiple 50");
+	}
+
+	public void toWithdrawMoney() {
+
+	}
 }
