@@ -1,5 +1,7 @@
 package com.Karayvansky.ATM;
 
+import java.util.Random;
+
 public class Money {
 
 	public static final int FIFTEEN = 50;
@@ -14,4 +16,8 @@ public class Money {
 	public static final int NINE_HUNDRED = 900;
 	public static final int THOUSAND = 1000;
 
+	public void randomBancnote() {
+		Random random = new Random();
+
+	}
 }

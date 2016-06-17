@@ -8,7 +8,7 @@ public class Main {
 		atm.enterPinCode();
 		atm.selectFunctionFromMenu();
 		atm.chooseOperation();
-		
+
 	}
 
 }

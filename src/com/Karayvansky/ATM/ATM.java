@@ -71,32 +71,44 @@ public class ATM {
 	public void printWithdrawMoney() {
 		System.out.println("Do you want remove:" + "\n1. " + money.FIFTEEN + "\n2. " + money.HUNDRED + "\n3. "
 				+ money.THREE_HUNDRED + "\n4. " + money.FIVE_HUNDRED + "\n5. " + money.EIGHT_HUNDRED + "\n6. "
-				+ money.THOUSAND + "\n7. Other sum amount multiple 50");
+				+ money.THOUSAND + "\n7. Other sum");
 	}
 
 	public int toWithdrawMoney() {
-		switch (user.functionChoose()) {
+		int funcChoose = user.functionChoose();
+		switch (funcChoose) {
 		case 1:
-			security.getCard().setBalance(money.FIFTEEN - security.getCard().getBalance());
-			System.out.println(security.getCard().getBalance());
+			security.getCard().setBalance(security.getCard().getBalance() - money.FIFTEEN);
+			System.out.println("collect your banknote" + money.FIFTEEN);
 			return (int) security.getCard().getBalance();
 		case 2:
-			//
-			break;
+			security.getCard().setBalance(security.getCard().getBalance() - money.HUNDRED);
+			System.out.println(security.getCard().getBalance());
+			return (int) security.getCard().getBalance();
 		case 3:
-			//
-			break;
+			security.getCard().setBalance(security.getCard().getBalance() - money.THREE_HUNDRED);
+			System.out.println(security.getCard().getBalance());
+			return (int) security.getCard().getBalance();
 		case 4:
-			//
-			break;
+			security.getCard().setBalance(security.getCard().getBalance() - money.FIVE_HUNDRED);
+			System.out.println(security.getCard().getBalance());
+			return (int) security.getCard().getBalance();
 		case 5:
-			//
-			break;
+			security.getCard().setBalance(security.getCard().getBalance() - money.EIGHT_HUNDRED);
+			System.out.println(security.getCard().getBalance());
+			return (int) security.getCard().getBalance();
 		case 6:
-			//
-			break;
+			security.getCard().setBalance(security.getCard().getBalance() - money.THOUSAND);
+			System.out.println(security.getCard().getBalance());
+			return (int) security.getCard().getBalance();
 		case 7:
-			//
+			System.out.print("Input your sum amount multiple 50: ");
+			double mult = (double) user.functionChoose();
+			if (mult >= 50 & mult % 5 == 0.0) {
+				security.getCard().setBalance(security.getCard().getBalance() - mult);
+				System.out.println(security.getCard().getBalance());
+				System.out.println("collect your banknote " + mult);
+			}
 			break;
 		default:
 			break;
