@@ -1,12 +1,15 @@
 package com.Karayvansky.ATM;
 
 import java.util.Scanner;
+import java.util.Date;
 
 public class ATM {
 
 	private User user = new User();
 	private Security security = new Security();
-	Money money = new Money();
+	private Bill bill = new Bill();
+	private Money money = new Money();
+	private Date date = new Date();
 
 	public void start() throws ExceptionWrongInsertCard {
 		if (user.insertCard())
@@ -16,6 +19,7 @@ public class ATM {
 	}
 
 	public void enterPinCode() throws ExceptionCardNotSuitable {
+		System.out.print("Enter pin code: ");
 		if (security.checkPinCode(inputPinCode())) {
 			System.out.println("Pin code correct");
 		} else {
@@ -38,34 +42,58 @@ public class ATM {
 	}
 
 	public void selectFunctionFromMenu() {
+		System.out.println();
 		System.out.println("What you want to do?\n1.Show balance on a screen\n2.Print balance on a bill"
-				+ "\n3.Money transfer to another account" + "\n4.To replenish  mobile account"
-				+ "\n5.To withdraw money");
+				+ "\n3.Money transfer to another account" + "\n4.To replenish  mobile account" + "\n5.To withdraw money"
+				+ "\n6. Exit");
 	}
 
-	public void chooseOperation() {
-
-		switch (user.functionChoose()) {
+	public int chooseOperation() throws ExceptionMaxSum {
+		selectFunctionFromMenu();
+		int choose = user.functionChoose();
+		switch (choose) {
 		case 1:
 			System.out.println("On your card " + security.getCard().getBalance() + " dollars");
-			break;
-		// case 2:
-		// System.out.println("On your card " + card.getBalance() + " dollars");
-		// break;
-		// case 3:
-		// System.out.println("On your card " + card.getBalance() + " dollars");
-		// break;
-		// case 4:
-		// System.out.println("On your card " + card.getBalance() + " dollars");
-		// break;
+			return 1;
+		case 2:
+			bill.printBill();
+			return 2;
+		case 3:
+			System.out.print("Enter the amount of money(maximum 10000): ");
+			int money = user.functionChoose();
+			if (money <= 10000) {
+				System.out.print("Enter the number of account: ");
+				int account = user.functionChoose();
+				CardFactory cardFactory = new CardFactory();
+				BaseOfBankCards card = cardFactory.identifyCard(account);
+				card.setBalance(card.getBalance() + money);
+				security.getCard().setBalance(security.getCard().getBalance() - money);
+				System.out.print("The completion was successful");
+			} else
+				throw new ExceptionMaxSum("You enter invalid amount!");
+			return 3;
+		case 4:
+			System.out.print("Input mobile number: +380");
+			user.functionChoose();
+			System.out.print("Enter the amount of money(maximum 1000): ");
+			int moneyOnPhone = user.functionChoose();
+			if (moneyOnPhone <= 1000) {
+				System.out.print("The completion was successful");
+				security.getCard().setBalance(security.getCard().getBalance() - moneyOnPhone);
+			} else
+				throw new ExceptionMaxSum("You enter invalid amount!");
+			return 4;
 		case 5:
 			printWithdrawMoney();
 			toWithdrawMoney();
-
-			break;
+			return 5;
+		case 6:
+			System.out.print("Take your card");
+			return 6;
 		default:
-			break;
+			System.out.print("Error!");
 		}
+		return 6;
 	}
 
 	public void printWithdrawMoney() {
@@ -74,45 +102,37 @@ public class ATM {
 				+ money.THOUSAND + "\n7. Other sum");
 	}
 
-	public int toWithdrawMoney() {
+	public void toWithdrawMoney() {
 		int funcChoose = user.functionChoose();
 		switch (funcChoose) {
 		case 1:
 			security.getCard().setBalance(security.getCard().getBalance() - money.FIFTEEN);
 			System.out.println("collect your banknote" + money.FIFTEEN);
-			return (int) security.getCard().getBalance();
 		case 2:
 			security.getCard().setBalance(security.getCard().getBalance() - money.HUNDRED);
-			System.out.println(security.getCard().getBalance());
-			return (int) security.getCard().getBalance();
+			System.out.println("collect your banknote" + security.getCard().getBalance());
 		case 3:
 			security.getCard().setBalance(security.getCard().getBalance() - money.THREE_HUNDRED);
-			System.out.println(security.getCard().getBalance());
-			return (int) security.getCard().getBalance();
+			System.out.println("collect your banknote" + security.getCard().getBalance());
 		case 4:
 			security.getCard().setBalance(security.getCard().getBalance() - money.FIVE_HUNDRED);
-			System.out.println(security.getCard().getBalance());
-			return (int) security.getCard().getBalance();
+			System.out.println("collect your banknote" + security.getCard().getBalance());
 		case 5:
 			security.getCard().setBalance(security.getCard().getBalance() - money.EIGHT_HUNDRED);
-			System.out.println(security.getCard().getBalance());
-			return (int) security.getCard().getBalance();
+			System.out.println("collect your banknote" + security.getCard().getBalance());
 		case 6:
 			security.getCard().setBalance(security.getCard().getBalance() - money.THOUSAND);
-			System.out.println(security.getCard().getBalance());
-			return (int) security.getCard().getBalance();
+			System.out.println("collect your banknote" + security.getCard().getBalance());
 		case 7:
 			System.out.print("Input your sum amount multiple 50: ");
 			double mult = (double) user.functionChoose();
 			if (mult >= 50 & mult % 5 == 0.0) {
 				security.getCard().setBalance(security.getCard().getBalance() - mult);
-				System.out.println(security.getCard().getBalance());
 				System.out.println("collect your banknote " + mult);
 			}
 			break;
 		default:
-			break;
+			System.out.println("Error!");
 		}
-		return 0;
 	}
 }

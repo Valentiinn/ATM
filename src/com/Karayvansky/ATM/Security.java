@@ -1,9 +1,9 @@
 package com.Karayvansky.ATM;
 
 public class Security {
-	private int secretCode = 4566;
+	private int serialNumber = 44442010;
 	private CardFactory cardFactory = new CardFactory();
-	private BaseOfBankCards card = cardFactory.identifyCard(secretCode);
+	private BaseOfBankCards card = cardFactory.identifyCard(serialNumber);
 
 	// public boolean identification(int secretCode) {
 	// CardFactory cardFactory = new CardFactory();
@@ -14,18 +14,18 @@ public class Security {
 	// }
 
 	public boolean checkPinCode(int pineCode) {
-		setSecretCode(secretCode);
+		setSecretCode(serialNumber);
 		if (pineCode == card.getPinCode())
 			return true;
 		return false;
 	}
 
 	public int getSecretCode() {
-		return secretCode;
+		return serialNumber;
 	}
 
 	public void setSecretCode(int secretCode) {
-		this.secretCode = secretCode;
+		this.serialNumber = secretCode;
 	}
 
 	public BaseOfBankCards getCard() {

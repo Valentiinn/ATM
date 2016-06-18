@@ -18,6 +18,8 @@ public class Money {
 
 	public void randomBancnote() {
 		Random random = new Random();
-
+		int[] array = { FIFTEEN, HUNDRED, TWO_HUNDRED, THREE_HUNDRED, FOUR_HUNDRED, FIVE_HUNDRED, SIX_HUNDRED,
+				SEVEN_HUNDRED, EIGHT_HUNDRED, NINE_HUNDRED, THOUSAND };
 	}
+
 }

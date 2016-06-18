@@ -1,15 +1,11 @@
 package com.Karayvansky.ATM;
 
 public class BaseOfBankCards {
-	private int serialNumber;
+
 	private int pinCode;
 	private String ownerCard;
 	private String typeOfCard;
 	private double balance;
-
-	public void setSerialNumber(int serialNumber) {
-		this.serialNumber = serialNumber;
-	}
 
 	public void setPinCode(int pinCode) {
 		this.pinCode = pinCode;
@@ -25,10 +21,6 @@ public class BaseOfBankCards {
 
 	public void setBalance(double balance) {
 		this.balance = balance;
-	}
-
-	public int getSerialNumber() {
-		return serialNumber;
 	}
 
 	public int getPinCode() {
@@ -47,6 +39,4 @@ public class BaseOfBankCards {
 		return balance;
 	}
 
-	
-	
 }
