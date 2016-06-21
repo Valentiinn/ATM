@@ -3,21 +3,21 @@ package com.Karayvansky.ATM;
 import java.util.Scanner;
 import java.util.Date;
 
-public class ATMOdessa implements Interface {
+public class ATM {
 
 	private User user = new User();
-	private Security security = new Security();
+	private SecurityOdessaBank security = SecurityOdessaBank.getInstance();
 	private Bill bill = new Bill();
-	private Money money = new Money();
+	private Money money;
 
-	private static ATMOdessa instance = null;
+	private static ATM instance = null;
 
-	private ATMOdessa() {
+	private ATM() {
 	}
 
-	public static ATMOdessa getInstance() {
+	public static ATM getInstance() {
 		if (instance == null) {
-			instance = new ATMOdessa();
+			instance = new ATM();
 		}
 
 		return instance;
@@ -118,7 +118,7 @@ public class ATMOdessa implements Interface {
 		int funcChoose = user.functionChoose();
 		switch (funcChoose) {
 		case 1:
-			security.getCard().setBalance(security.getCard().getBalance() - money.FIFTEEN);
+			security.getCard().setBalance(security.getCard().getBalance() - money.getBancnote());
 			System.out.println("collect your banknote" + money.FIFTEEN);
 		case 2:
 			security.getCard().setBalance(security.getCard().getBalance() - money.HUNDRED);

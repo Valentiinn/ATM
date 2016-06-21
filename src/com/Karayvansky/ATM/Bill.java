@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Bill {
 
-	private Security security = new Security();
+	private SecurityOdessaBank security = SecurityOdessaBank.getInstance();
 	private Date date = new Date();
 
 	public void printBill() {
