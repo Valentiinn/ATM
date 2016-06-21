@@ -3,13 +3,12 @@ package com.Karayvansky.ATM;
 import java.util.Scanner;
 import java.util.Date;
 
-public class ATM {
+public class ATMOdessa implements Interface {
 
 	private User user = new User();
 	private Security security = new Security();
 	private Bill bill = new Bill();
 	private Money money = new Money();
-	private Date date = new Date();
 
 	public void start() throws ExceptionWrongInsertCard {
 		if (user.insertCard())
