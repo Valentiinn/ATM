@@ -3,7 +3,7 @@ package com.Karayvansky.ATM;
 public class Main {
 
 	public static void main(String[] args) throws ExceptionCardNotSuitable, ExceptionWrongInsertCard, ExceptionMaxSum {
-		ATMOdessa atm = new ATMOdessa();
+		ATMOdessa atm = ATMOdessa.getInstance();
 		atm.start();
 		atm.enterPinCode();
 		while (atm.chooseOperation() != 6) {

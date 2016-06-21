@@ -10,6 +10,19 @@ public class ATMOdessa implements Interface {
 	private Bill bill = new Bill();
 	private Money money = new Money();
 
+	private static ATMOdessa instance = null;
+
+	private ATMOdessa() {
+	}
+
+	public static ATMOdessa getInstance() {
+		if (instance == null) {
+			instance = new ATMOdessa();
+		}
+
+		return instance;
+	}
+
 	public void start() throws ExceptionWrongInsertCard {
 		if (user.insertCard())
 			System.out.println("Welcome to Odessa Bank!");
