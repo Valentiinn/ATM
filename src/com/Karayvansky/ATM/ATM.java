@@ -6,8 +6,8 @@ import java.util.Date;
 public class ATM {
 
 	private User user = new User();
-	private SecurityOdessaBank security = SecurityOdessaBank.getInstance();
-	private Bill bill = Bill.getInstance();
+	private Security security = SecurityOdessaBank.getInstance();
+	private Bill bill = BillForOdessaBank.getInstance();
 
 	private static ATM instance = null;
 

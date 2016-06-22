@@ -14,7 +14,7 @@ public class SecurityOdessaBank implements Security {
 	// }
 	private static SecurityOdessaBank instance = null;
 
-	private SecurityOdessaBank() {
+	SecurityOdessaBank() {
 	}
 
 	public static SecurityOdessaBank getInstance() {
@@ -24,6 +24,7 @@ public class SecurityOdessaBank implements Security {
 
 		return instance;
 	}
+
 	public boolean checkPinCode(int pineCode) {
 		setSecretCode(serialNumber);
 		if (pineCode == card.getPinCode())
@@ -47,4 +48,8 @@ public class SecurityOdessaBank implements Security {
 		return cardFactory;
 	}
 
+	public Security setSecurity(Security sesurity) {
+		SecurityOdessaBank securityOdessaBank = new SecurityOdessaBank();
+		return securityOdessaBank;
+	}
 }

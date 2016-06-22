@@ -1,7 +1,6 @@
 package com.Karayvansky.ATM;
 
 public interface Security {
-	
 
 	public boolean checkPinCode(int pineCode);
 
@@ -12,4 +11,6 @@ public interface Security {
 	public BaseOfBankCards getCard();
 
 	public CardFactory getCardFactory();
+
+	public Security setSecurity(Security sesurity);
 }
