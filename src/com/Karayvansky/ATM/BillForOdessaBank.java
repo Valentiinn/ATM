@@ -6,10 +6,11 @@ public class BillForOdessaBank implements Bill {
 	private static BillForOdessaBank instance = null;
 	private Date date = new Date();
 
-	private BillForOdessaBank() {
+	BillForOdessaBank() {
+
 	}
 
-	public static BillForOdessaBank getInstance() {
+	public BillForOdessaBank getInstance() {
 		if (instance == null) {
 			instance = new BillForOdessaBank();
 		}

@@ -1,22 +1,24 @@
 package com.Karayvansky.ATM;
 
 import java.util.Scanner;
-import java.util.Date;
 
 public class ATM {
 
-	private User user = new User();
-	private Security security = SecurityOdessaBank.getInstance();
-	private Bill bill = BillForOdessaBank.getInstance();
-
+	User user;
+	Security security;
+	Bill bill;
 	private static ATM instance = null;
 
-	private ATM() {
+	private ATM(Security security, Bill bill, User user) {
+		this.security = security;
+		this.bill = bill;
+		this.user = user;
 	}
 
-	public static ATM getInstance() {
+	public static ATM getInstance(Security security, Bill bill, User user) {
 		if (instance == null) {
-			instance = new ATM();
+			instance = new ATM(security, bill, user);
+
 		}
 
 		return instance;

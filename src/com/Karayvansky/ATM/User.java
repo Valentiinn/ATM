@@ -1,23 +1,10 @@
 package com.Karayvansky.ATM;
 
-import java.util.Scanner;
+public interface User {
 
-public class User {
+	public boolean insertCard();
 
-	public boolean insertCard() {
-		return true;
-	}
+	public int inputPinCode();
 
-	public int inputPinCode() {
-		Scanner sc = new Scanner(System.in);
-		int pinCode = sc.nextInt();
-		return pinCode;
-	}
-
-	public int functionChoose() {
-		Scanner sc = new Scanner(System.in);
-		int choose = sc.nextInt();
-		return choose;
-	}
-
+	public int functionChoose();
 }

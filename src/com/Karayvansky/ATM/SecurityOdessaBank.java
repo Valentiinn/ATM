@@ -14,7 +14,7 @@ public class SecurityOdessaBank implements Security {
 	// }
 	private static SecurityOdessaBank instance = null;
 
-	SecurityOdessaBank() {
+	 SecurityOdessaBank() {
 	}
 
 	public static SecurityOdessaBank getInstance() {
