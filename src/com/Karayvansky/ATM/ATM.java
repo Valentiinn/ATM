@@ -7,8 +7,7 @@ public class ATM {
 
 	private User user = new User();
 	private SecurityOdessaBank security = SecurityOdessaBank.getInstance();
-	private Bill bill = new Bill();
-	private Money money;
+	private Bill bill = Bill.getInstance();
 
 	private static ATM instance = null;
 
@@ -68,7 +67,7 @@ public class ATM {
 			System.out.println("On your card " + security.getCard().getBalance() + " dollars");
 			return 1;
 		case 2:
-			bill.printBill();
+			bill.printBill(security);
 			return 2;
 		case 3:
 			System.out.print("Enter the amount of money(maximum 10000): ");
@@ -109,39 +108,47 @@ public class ATM {
 	}
 
 	public void printWithdrawMoney() {
-		System.out.println("Do you want remove:" + "\n1. " + money.FIFTEEN + "\n2. " + money.HUNDRED + "\n3. "
-				+ money.THREE_HUNDRED + "\n4. " + money.FIVE_HUNDRED + "\n5. " + money.EIGHT_HUNDRED + "\n6. "
-				+ money.THOUSAND + "\n7. Other sum");
+		System.out.println("Do you want remove:" + "\n1. " + Money.FIFTEEN.getBancnote() + "\n2. "
+				+ Money.HUNDRED.getBancnote() + "\n3. " + Money.THREE_HUNDRED.getBancnote() + "\n4. "
+				+ Money.FIVE_HUNDRED.getBancnote() + "\n5. " + Money.EIGHT_HUNDRED.getBancnote() + "\n6. "
+				+ Money.THOUSAND.getBancnote() + "\n7. Other sum");
 	}
 
 	public void toWithdrawMoney() {
 		int funcChoose = user.functionChoose();
 		switch (funcChoose) {
 		case 1:
-			security.getCard().setBalance(security.getCard().getBalance() - money.getBancnote());
-			System.out.println("collect your banknote" + money.FIFTEEN);
+			security.getCard().setBalance(security.getCard().getBalance() - Money.FIFTEEN.getBancnote());
+			System.out.println("collect your banknote: " + Money.FIFTEEN.getBancnote());
+			break;
 		case 2:
-			security.getCard().setBalance(security.getCard().getBalance() - money.HUNDRED);
-			System.out.println("collect your banknote" + security.getCard().getBalance());
+			security.getCard().setBalance(security.getCard().getBalance() - Money.HUNDRED.getBancnote());
+			System.out.println("collect your banknote: " + Money.HUNDRED.getBancnote());
+			break;
 		case 3:
-			security.getCard().setBalance(security.getCard().getBalance() - money.THREE_HUNDRED);
-			System.out.println("collect your banknote" + security.getCard().getBalance());
+			security.getCard().setBalance(security.getCard().getBalance() - Money.THREE_HUNDRED.getBancnote());
+			System.out.println("collect your banknote: " + Money.THREE_HUNDRED.getBancnote());
+			break;
 		case 4:
-			security.getCard().setBalance(security.getCard().getBalance() - money.FIVE_HUNDRED);
-			System.out.println("collect your banknote" + security.getCard().getBalance());
+			security.getCard().setBalance(security.getCard().getBalance() - Money.FIVE_HUNDRED.getBancnote());
+			System.out.println("collect your banknote: " + Money.FIVE_HUNDRED.getBancnote());
+			break;
 		case 5:
-			security.getCard().setBalance(security.getCard().getBalance() - money.EIGHT_HUNDRED);
-			System.out.println("collect your banknote" + security.getCard().getBalance());
+			security.getCard().setBalance(security.getCard().getBalance() - Money.EIGHT_HUNDRED.getBancnote());
+			System.out.println("collect your banknote: " + Money.EIGHT_HUNDRED.getBancnote());
+			break;
 		case 6:
-			security.getCard().setBalance(security.getCard().getBalance() - money.THOUSAND);
-			System.out.println("collect your banknote" + security.getCard().getBalance());
+			security.getCard().setBalance(security.getCard().getBalance() - Money.THOUSAND.getBancnote());
+			System.out.println("collect your banknote: " + Money.THOUSAND.getBancnote());
+			break;
 		case 7:
 			System.out.print("Input your sum amount multiple 50: ");
 			double mult = (double) user.functionChoose();
 			if (mult >= 50 & mult % 5 == 0.0) {
 				security.getCard().setBalance(security.getCard().getBalance() - mult);
-				System.out.println("collect your banknote " + mult);
-			}
+				System.out.println("collect your banknote: " + mult);
+			} else
+				System.out.print("Your sum don`t amount multiple 50");
 			break;
 		default:
 			System.out.println("Error!");
